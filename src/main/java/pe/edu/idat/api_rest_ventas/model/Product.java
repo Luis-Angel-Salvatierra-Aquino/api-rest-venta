@@ -19,6 +19,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "categoryid")
     private Category category;
+    @ManyToOne
+    @JoinColumn(name = "supplierid")
+    private Supplier supplier;
 
     public Integer getProductid() {
         return productid;
