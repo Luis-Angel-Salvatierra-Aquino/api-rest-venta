@@ -23,6 +23,14 @@ public class Product {
     @JoinColumn(name = "supplierid")
     private Supplier supplier;
 
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
     public Integer getProductid() {
         return productid;
     }
