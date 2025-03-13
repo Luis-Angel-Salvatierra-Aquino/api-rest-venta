@@ -24,7 +24,7 @@ public class ProductController {
     }
     @GetMapping
     public ResponseEntity<GenericResponseDto<List<DtoEntity>>>
-    listarCategorias(){
+    listarProductos(){
         List<DtoEntity> productList = productService
                 .listarProductos();
         if(productList.isEmpty()){
