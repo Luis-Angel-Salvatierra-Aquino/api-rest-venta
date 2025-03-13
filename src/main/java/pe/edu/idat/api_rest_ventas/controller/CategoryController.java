@@ -52,4 +52,22 @@ public class CategoryController {
                                 "La categoría buscada no existe"));
         return new ResponseEntity<>(category, HttpStatus.OK);
     }
+
+
+    @PutMapping("/{categoryid}")
+    public ResponseEntity<Category> actualizarCategoria(
+        @PathVariable Integer categoryid,
+        @RequestBody Category category
+    ){
+        Category currentCategory = categoryService
+                .obtenerCategoriaXid(categoryid)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "La categoría buscada no existe"));
+        currentCategory.setCategoryname(category.getCategoryname());
+        currentCategory.setDescription(category.getDescription());
+        return new ResponseEntity<>(
+                categoryService.guardarCategoria(currentCategory),
+                HttpStatus.OK);
+    }
 }
