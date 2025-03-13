@@ -6,6 +6,7 @@ import pe.edu.idat.api_rest_ventas.model.Category;
 import pe.edu.idat.api_rest_ventas.repository.CategoryRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -22,6 +23,11 @@ public class CategoryService {
 
     public Category guardarCategoria(Category category){
         return categoryRepository.save(category);
+    }
+
+    public Optional<Category> obtenerCategoriaXid(
+            Integer categoryId){
+        return categoryRepository.findById(categoryId);
     }
 
 
