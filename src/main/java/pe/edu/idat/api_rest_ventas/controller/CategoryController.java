@@ -4,6 +4,7 @@ package pe.edu.idat.api_rest_ventas.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.idat.api_rest_ventas.exception.ResourceNotFoundException;
 import pe.edu.idat.api_rest_ventas.model.Category;
 import pe.edu.idat.api_rest_ventas.service.CategoryService;
 
@@ -37,5 +38,18 @@ public class CategoryController {
         return new ResponseEntity<>(
                 categoryService.guardarCategoria(category),
                 HttpStatus.CREATED);
+    }
+    //localhost:8080/api/v1/category/1
+    @GetMapping("/{categoryid}")
+    public ResponseEntity<Category> obtenerCategoriaXid(
+            @PathVariable Integer categoryid
+            //@PathVariable("categoryid") Integer id
+    ){
+        Category category = categoryService
+                .obtenerCategoriaXid(categoryid)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "La categoría buscada no existe"));
+        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 }
