@@ -21,14 +21,14 @@ public class ProductService {
         this.convertDto = convertDto;
     }
 
-    public List<Product> listarProductos(){
+    public List<DtoEntity> listarProductos(){
         List<DtoEntity> productDtoList = new ArrayList<>();
         productDtoList = productRepository.findAll()
                 .stream()
                 .map(p -> convertDto.convertirADto(p,
                 new ProductDto()))
                 .collect(Collectors.toList());
-        return productRepository.findAll();
+        return productDtoList;
     }
 
 }

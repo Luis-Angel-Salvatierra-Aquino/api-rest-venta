@@ -5,6 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pe.edu.idat.api_rest_ventas.dto.DtoEntity;
+import pe.edu.idat.api_rest_ventas.dto.GenericResponseDto;
+import pe.edu.idat.api_rest_ventas.dto.ProductDto;
 import pe.edu.idat.api_rest_ventas.model.Category;
 import pe.edu.idat.api_rest_ventas.model.Product;
 import pe.edu.idat.api_rest_ventas.service.ProductService;
@@ -20,14 +23,19 @@ public class ProductController {
         this.productService = productService;
     }
     @GetMapping
-    public ResponseEntity<List<Product>> listarCategorias(){
-        List<Product> productList = productService
+    public ResponseEntity<GenericResponseDto<List<DtoEntity>>>
+    listarCategorias(){
+        List<DtoEntity> productList = productService
                 .listarProductos();
         if(productList.isEmpty()){
             return new ResponseEntity<>(
                     HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(productList,
+        GenericResponseDto<List<DtoEntity>> responseDto
+                = new GenericResponseDto<>();
+        responseDto.setRespuesta(productList);
+        responseDto.setStatusCode(200);
+        return new ResponseEntity<>(responseDto,
                 HttpStatus.OK);
     }
 }
