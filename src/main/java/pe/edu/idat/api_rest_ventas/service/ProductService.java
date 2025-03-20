@@ -10,6 +10,7 @@ import pe.edu.idat.api_rest_ventas.util.ConvertDto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,6 +41,11 @@ public class ProductService {
         product.setUnitsinstock(productDto.getStock());
         product.setDiscontinued(productDto.getDescontinuado());
         productRepository.save(product);
+    }
+
+    public Optional<Product> obtenerProductoXid(
+            Integer productid){
+        return productRepository.findById(productid);
     }
 
 }

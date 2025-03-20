@@ -2,12 +2,11 @@ package pe.edu.idat.api_rest_ventas.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pe.edu.idat.api_rest_ventas.dto.DtoEntity;
 import pe.edu.idat.api_rest_ventas.dto.GenericResponseDto;
 import pe.edu.idat.api_rest_ventas.dto.ProductDto;
+import pe.edu.idat.api_rest_ventas.dto.UpdateProductDto;
 import pe.edu.idat.api_rest_ventas.model.Category;
 import pe.edu.idat.api_rest_ventas.model.Product;
 import pe.edu.idat.api_rest_ventas.service.ProductService;
@@ -37,5 +36,14 @@ public class ProductController {
         responseDto.setStatusCode(200);
         return new ResponseEntity<>(responseDto,
                 HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<GenericResponseDto<String>>
+        actualizarProducto(@PathVariable Integer id,
+                           @RequestBody UpdateProductDto
+                                   productDto){
+        Product currentProduct =
+        return null;
     }
 }
