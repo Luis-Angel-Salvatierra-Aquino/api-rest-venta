@@ -47,7 +47,7 @@ public class ProductController {
         GenericResponseDto<String> response =
                 new GenericResponseDto<>();
         try {
-            productService
+            Product currentProduct = productService
                     .obtenerProductoXid(id)
                     .orElseThrow(() ->
                             new ResourceNotFoundException("El producto no existe"));

@@ -35,12 +35,11 @@ public class ProductService {
 
     public void actualizarProducto(
             UpdateProductDto productDto){
-        Product product = new Product();
-        product.setProductid(productDto.getId());
-        product.setUnitprice(productDto.getPreciounitario());
-        product.setUnitsinstock(productDto.getStock());
-        product.setDiscontinued(productDto.getDescontinuado());
-        productRepository.save(product);
+        productRepository.actualizarPrecioStockProducto(
+                productDto.getPreciounitario(),
+                productDto.getStock(),
+                productDto.getDescontinuado(),
+                productDto.getId());
     }
 
     public Optional<Product> obtenerProductoXid(
