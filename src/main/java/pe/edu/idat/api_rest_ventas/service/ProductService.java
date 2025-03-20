@@ -3,6 +3,7 @@ package pe.edu.idat.api_rest_ventas.service;
 import org.springframework.stereotype.Service;
 import pe.edu.idat.api_rest_ventas.dto.DtoEntity;
 import pe.edu.idat.api_rest_ventas.dto.ProductDto;
+import pe.edu.idat.api_rest_ventas.dto.UpdateProductDto;
 import pe.edu.idat.api_rest_ventas.model.Product;
 import pe.edu.idat.api_rest_ventas.repository.ProductRepository;
 import pe.edu.idat.api_rest_ventas.util.ConvertDto;
@@ -29,6 +30,16 @@ public class ProductService {
                 new ProductDto()))
                 .collect(Collectors.toList());
         return productDtoList;
+    }
+
+    public void actualizarProducto(
+            UpdateProductDto productDto){
+        Product product = new Product();
+        product.setProductid(productDto.getId());
+        product.setUnitprice(productDto.getPreciounitario());
+        product.setUnitsinstock(productDto.getStock());
+        product.setDiscontinued(productDto.getDescontinuado());
+        productRepository.save(product);
     }
 
 }
