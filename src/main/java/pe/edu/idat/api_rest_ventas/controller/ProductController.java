@@ -62,6 +62,17 @@ public class ProductController {
             return new ResponseEntity<>(response,
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
+    //localhost:8080/api/v1/product?descontinuado=true&nombreproducto=a
+    @GetMapping("/busqueda")
+    public ResponseEntity<List<Product>> obtenerProductosFiltros(
+            @RequestParam Boolean descontinuado,
+            @RequestParam String nombreproducto
+    ){
+        return new ResponseEntity<>(
+                productService.obtenerProductosFiltros(
+                        descontinuado, nombreproducto),
+                HttpStatus.OK);
+    }
+
 }

@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pe.edu.idat.api_rest_ventas.model.Product;
 
+import java.util.List;
+
 @Repository
 public interface ProductRepository
         extends JpaRepository<Product, Integer> {
@@ -26,5 +28,12 @@ public interface ProductRepository
             @Param("unitsinstock") Integer unitsinstock,
             @Param("discontinued") Boolean discontinued,
             @Param("productid") Integer productid);
+
+    /* Select * from products
+    where discontinued = :discontinued
+     and productname  LIKE '%a%' */
+    List<Product> findByDiscontinuedAndProductnameContaining(
+            Boolean discontinued,
+            String productname);
 
 }

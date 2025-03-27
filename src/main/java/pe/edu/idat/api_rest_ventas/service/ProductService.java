@@ -46,5 +46,14 @@ public class ProductService {
             Integer productid){
         return productRepository.findById(productid);
     }
+    //Buscando productos por un valor al productame
+    // y el valor descontinuado
+    public List<Product> obtenerProductosFiltros(
+            Boolean descontinuado,
+            String nombreProducto){
+        return productRepository
+                .findByDiscontinuedAndProductnameContaining(
+                        descontinuado, nombreProducto);
+    }
 
 }
