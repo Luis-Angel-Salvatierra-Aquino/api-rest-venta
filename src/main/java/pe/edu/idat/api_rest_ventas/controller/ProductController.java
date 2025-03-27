@@ -63,7 +63,7 @@ public class ProductController {
                     HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    //localhost:8080/api/v1/product?descontinuado=true&nombreproducto=a
+    //localhost:8080/api/v1/product/busqueda?descontinuado=true&nombreproducto=a
     @GetMapping("/busqueda")
     public ResponseEntity<List<Product>> obtenerProductosFiltros(
             @RequestParam Boolean descontinuado,
