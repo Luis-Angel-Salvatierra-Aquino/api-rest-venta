@@ -39,9 +39,9 @@ public interface ProductRepository
             String productname);
     //Consulta JPQL
     @Query("""
-            SELECT p FROM product p 
-            WHERE discontinued = :discontinued 
-            AND productname LIKE :productname
+            SELECT p FROM product p
+            WHERE p.discontinued = :discontinued
+            AND p.productname LIKE :productname
             """)
     List<Product> buscarProductosXNombreEstado(
             @Param("discontinued") Boolean discontinued,

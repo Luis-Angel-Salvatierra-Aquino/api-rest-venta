@@ -3,6 +3,7 @@ package pe.edu.idat.api_rest_ventas.service;
 import org.springframework.stereotype.Service;
 import pe.edu.idat.api_rest_ventas.dto.DtoEntity;
 import pe.edu.idat.api_rest_ventas.dto.ProductDto;
+import pe.edu.idat.api_rest_ventas.dto.ResumenProductDto;
 import pe.edu.idat.api_rest_ventas.dto.UpdateProductDto;
 import pe.edu.idat.api_rest_ventas.model.Product;
 import pe.edu.idat.api_rest_ventas.repository.ProductRepository;
@@ -54,6 +55,24 @@ public class ProductService {
         return productRepository
                 .findByDiscontinuedAndProductnameContaining(
                         descontinuado, nombreProducto);
+    }
+
+    public List<ResumenProductDto> obtenerProductosXStock(
+            Integer stock
+    ){
+        return productRepository
+                .obtenerProductosXStockMinimo(stock)
+                .stream()
+                .map(prod -> {
+                    ResumenProductDto dto = new ResumenProductDto();
+                    dto.setProductid(prod.getProductId());
+                    dto.setProductname(prod.getProductName());
+                    dto.setCategoryname(prod.getCategoryName());
+                    dto.setUnitsinstock(prod.getUnitsInStock());
+                    dto.setContactname(prod.getContactName());
+                    dto.setAddress(prod.getAddress());
+                    return dto;
+                }).collect(Collectors.toList());
     }
 
 }

@@ -3,10 +3,7 @@ package pe.edu.idat.api_rest_ventas.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.idat.api_rest_ventas.dto.DtoEntity;
-import pe.edu.idat.api_rest_ventas.dto.GenericResponseDto;
-import pe.edu.idat.api_rest_ventas.dto.ProductDto;
-import pe.edu.idat.api_rest_ventas.dto.UpdateProductDto;
+import pe.edu.idat.api_rest_ventas.dto.*;
 import pe.edu.idat.api_rest_ventas.exception.ResourceNotFoundException;
 import pe.edu.idat.api_rest_ventas.model.Category;
 import pe.edu.idat.api_rest_ventas.model.Product;
@@ -72,6 +69,15 @@ public class ProductController {
         return new ResponseEntity<>(
                 productService.obtenerProductosFiltros(
                         descontinuado, nombreproducto),
+                HttpStatus.OK);
+    }
+    //localhost:8080/api/v1/product/resumen?stock=10
+    @GetMapping("/resumen")
+    public ResponseEntity<List<ResumenProductDto>>
+    obtenerProductosxStock(@RequestParam Integer stock){
+        return new ResponseEntity<>(
+                productService.obtenerProductosXStock(
+                        stock),
                 HttpStatus.OK);
     }
 
